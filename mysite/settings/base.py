@@ -116,3 +116,4 @@ STATICFILES_FINDERS = (
 )
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles/'
