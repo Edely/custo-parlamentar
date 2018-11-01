@@ -8,8 +8,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'deputados.local']
 
-INTERNAL_IPS = ['127.0.0.1','192.168.1.109', '192.168.1.102', '192.168.1.104']
-
+INTERNAL_IPS = os.environ.get('INTERNAL_IPS', ['127.0.0.1'])
 
 MIDDLEWARE +=(
     'debug_toolbar.middleware.DebugToolbarMiddleware',
