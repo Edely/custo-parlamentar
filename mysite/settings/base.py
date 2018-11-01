@@ -12,8 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'alba',
-    'pipeline'
+    'alba'
 ]
 
 MIDDLEWARE = [

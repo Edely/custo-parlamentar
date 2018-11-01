@@ -6,4 +6,3 @@ psycopg2
 slugify
 gunicorn
 whitenoise
-django-pipeline
