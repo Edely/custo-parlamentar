@@ -107,13 +107,10 @@ PIPELINE = {
     }
 }
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles/'
+#STATIC_ROOT = '/staticfiles/'

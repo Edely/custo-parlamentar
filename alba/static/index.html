@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js">
+
+  </script>
+  <style>
+  .div {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+
+}
+.y.axis {
+   font: 10px sans-serif;
+}
+.x.axis path {
+  display: yes;
+}
+label {
+  position: absolute;
+  top: 10px;
+  right: 250px;
+
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+</style>
+  <script>
+  var data = [{"moduleName":"module1","complete":"60","noncomplete":"40"},{"moduleName":"module2","complete":"50","noncomplete":"50"},{"moduleName":"module3","complete":"70","noncomplete":"30"},{"moduleName":"module4","complete":"60","noncomplete":"40"},{"moduleName":"module5","complete":"30","noncomplete":"70"},{"moduleName":"module6","complete":"70","noncomplete":"30"},{"moduleName":"module7","complete":"60","noncomplete":"40"},{"moduleName":"module8","complete":"50","noncomplete":"50"},{"moduleName":"module9","complete":"70","noncomplete":"30"},{"moduleName":"module10","complete":"60","noncomplete":"40"},{"moduleName":"module11","complete":"30","noncomplete":"70"},{"moduleName":"module12","complete":"70","noncomplete":"30"}];
+
+
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+  width = 500 - margin.left - margin.right,
+  height = 300 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+  .rangeRoundBands([0, width], .1,.4);
+
+var y = d3.scale.linear()
+  .range([height, 0]);
+
+var color = d3.scale.category20();
+
+var xAxis = d3.svg.axis()
+  .scale(x)
+  .orient("bottom");
+
+var yAxis = d3.svg.axis()
+  .scale(y)
+  .orient("left")
+.ticks(4)
+  .tickFormat(function(d) { return d + "%"; });
+
+var tip = d3.tip()
+.attr('class', 'd3-tip')
+.offset([-10, 0])
+.html(function(d) {
+  console.log(d);
+console.log(d.name);
+  return "<strong>Module:</strong> <span style='color:red'>" + d.name + "</span><br>"+
+"<strong>Compleated:</strong> <span style='color:steelblue'>" + d.y1 + "%</span><br>"+
+"<strong>Non Compleated:</strong> <span style='color:gray'>" + (100-d.y1) + "%</span>";
+})
+
+var svg = d3.select("#stackedChart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var svgLegend = d3.select("#legend").append("svg")
+  .attr("width", 960)
+  .attr("height", 50)
+.append("g");
+
+svg.call(tip);
+
+color.domain(d3.keys(data[0]).filter(function(key) { return key !== "moduleName"; }));
+
+data.forEach(function(d) {
+  var y0 = 0;
+  d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+  d.total = d.ages[d.ages.length - 1].y1;
+});
+
+//data.sort(function(a, b) { return b.total - a.total; });
+
+x.domain(data.map(function(d) { return d.moduleName; }));
+y.domain([0, d3.max(data, function(d) { return d.total; })]);
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+  .selectAll("text")
+          .style("text-anchor", "end")
+          .attr("dx", ".8em")
+          .attr("dy", ".15em")
+    .attr("opacity",0)
+          .attr("transform", function(d) {
+              return "rotate(-90)"
+              });
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+  .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Module compleation status");
+
+var module = svg.selectAll(".moduleName")
+    .data(data)
+  .enter().append("g")
+    .attr("class", "moduleName")
+    .attr("transform", function(d) { return "translate(" + (x(d.moduleName)) + ",0)"; });
+
+module.selectAll("rect")
+    .data(function(d) { return d.ages; })
+    .enter().append("rect")
+    .attr("width", x.rangeBand())
+    .attr("y", 100)
+    .attr("height", 100)
+    .style("fill", function(d) { return color(d.name); })
+   .on('mouseover', tip.show)
+    .on('mouseout', tip.hide)
+  .transition()
+   .delay(function(d, i) { return i * 200; })
+     .duration(4000)
+   .attr("y", function(d) { return y(d.y1); })
+   .attr('height', function(d) { return y(d.y0) - y(d.y1); });
+
+ module.append("text")
+    .attr("y", 200)
+  .attr("x",x.rangeBand()/2 )
+    .style("text-anchor", "middle")
+  .style("font-size", "20px")
+  .style("color", "white")
+  .text(function(d,i) { return i+1; });
+
+
+
+
+var legend = svgLegend.selectAll(".legend")
+    .data(color.domain().slice().reverse())
+  .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(0," + i * 30 + ")"; });
+
+legend.append("rect")
+    .attr("x", width)
+    .attr("width", 20)
+    .attr("height", 20)
+    .style("fill", color);
+
+legend.append("text")
+    .attr("x", width)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) { return d; });
+
+
+
+d3.select("input").on("change", change);
+
+
+function change() {
+
+  // Copy-on-write since tweens are evaluated after a delay.
+  var x0 = x.domain(data.sort(this.checked
+      ? function(a, b) { return b.noncomplete - a.noncomplete; }
+      : function(a, b) { return d3.ascending(a.moduleName, b.moduleName); })
+      .map(function(d) { return d.moduleName; }))
+      .copy();
+
+  var transition = svg.transition().duration(750),
+      delay = function(d, i) { return i * 60; };
+
+  transition.selectAll(".moduleName")
+      .delay(delay)
+      .attr("transform",function(d, i) { return "translate(" + (x0(d.moduleName)) + ",0)"; } );
+
+transition.select(".x.axis")
+      .call(xAxis)
+    .selectAll("g")
+      .delay(delay);
+}
+
+svg.selectAll("#legend").append("svg");
+  </script>
+</head>
+<body>
+  <label><input type="checkbox">Sort</label><br>
+<div id ="stackedChart">
+<div id="legend"></div>
+</body>
+</html>
