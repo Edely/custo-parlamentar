@@ -1,0 +1,29 @@
+{
+  "name": "custo-parlamentar",
+  "version": "1.0.0",
+  "description": "Site de monitoramento dos deputados da Assembleia Legislativa da Bahia",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edely/custo-parlamentar.git"
+  },
+  "keywords": [
+    "alba",
+    "django",
+    "open",
+    "data"
+  ],
+  "author": "Edely Gomes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Edely/custo-parlamentar/issues"
+  },
+  "homepage": "https://github.com/Edely/custo-parlamentar#readme"
+}
