@@ -1,5 +1,4 @@
 import os
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,8 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'alba',
-    'pipeline'
+    'alba'
 ]
 
 MIDDLEWARE = [
@@ -109,17 +107,10 @@ PIPELINE = {
     }
 }
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-#MEDIA_ROOT = '/media/'
-#MEDIA_URL = ''
-django_heroku.settings(locals())
+STATIC_ROOT = 'staticfiles/'

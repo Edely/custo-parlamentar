@@ -69,8 +69,12 @@ Requisitos:
 
 **9º - Após sair da CLI do Posgresql, importar banco de dados.**
 
-`psql -h localhost -p 5432 -U postgres -f assembleia.sql assembleia`
+`psql -h localhost -p 5432 -U alba -f assembleia.sql assembleia`
 
 **10º - Rodar as migrations.**
 
 `python manage.py migrate`
+
+**11º - Iniciar servidor no ambiente local.**
+
+`python manage.py runserver --settings=mysite.settings.local`
