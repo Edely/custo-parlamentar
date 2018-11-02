@@ -74,3 +74,7 @@ Requisitos:
 **10º - Rodar as migrations.**
 
 `python manage.py migrate`
+
+**11º - Iniciar servidor no ambiente local.**
+
+`python manage.py runserver --settings=mysite.settings.local`
