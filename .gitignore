@@ -6,4 +6,4 @@ staticfiles/
 node_modules/
 alba/static/styles.min.css
 alba/static/styles.css
-alba/static/styles.min.js
+alba/static/js/styles.min.js
