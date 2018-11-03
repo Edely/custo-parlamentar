@@ -20,7 +20,7 @@ gulp.task('sass', function(){
 });
 
 gulp.task('concat-css', ['sass'], function(){
-    return gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.min.css',  './alba/static/styles.css'])
+    return gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.min.css', './node_modules/font-awesome/css/font-awesome.css', './alba/static/styles.css'])
         .pipe(concat('styles.css'))
         .pipe(uglifycss())
         .pipe(rename({suffix: '.min'}))
