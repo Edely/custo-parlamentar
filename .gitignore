@@ -1,5 +1,6 @@
 *.pyc
-__pycache__
+*__pycache__
 .sass-cache
 .vscode
 staticfiles/
+node_modules/
