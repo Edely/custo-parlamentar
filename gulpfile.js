@@ -10,7 +10,7 @@ gulp.task('default', ['sass', 'concat-css', 'js', 'compress']);
 
 gulp.task('watch', function(){
     gulp.watch('./alba/static/styles.scss', ['sass', 'concat-css']);
-    gulp.watch('./alba/static/js/scripts.js', ['js', 'compress']);
+    gulp.watch('./alba/static/js/dev-scripts.js', ['js', 'compress']);
 });
 
 gulp.task('sass', function(){
@@ -25,4 +25,17 @@ gulp.task('concat-css', ['sass'], function(){
         .pipe(uglifycss())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./alba/static/'));
+});
+
+gulp.task('js', function(){
+    return gulp.src(['./node_modules/jquery/dist/jquery.js', './node_modules/popper.js/dist/umd/popper.js', './node_modules/bootstrap/dist/js/bootstrap.js', './alba/static/js/dev-scripts.js'])
+        .pipe(concat('scripts.js'))
+        .pipe(gulp.dest('./alba/static/js/'));
+});
+
+gulp.task('compress', ['js'], function () {
+   return gulp.src('./alba/static/js/scripts.js')
+        .pipe(jsmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('./alba/static/js/'))
 });

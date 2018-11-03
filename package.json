@@ -11,7 +11,9 @@
     "gulp-jsmin": "^0.1.5",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglifycss": "^1.1.0"
+    "gulp-uglifycss": "^1.1.0",
+    "jquery": "^3.3.1",
+    "popper": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
