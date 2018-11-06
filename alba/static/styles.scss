@@ -1,40 +1,46 @@
 body {
-    background-color: #EFF3F6;
-    font-family: "Source Sans Pro", sans-serif;
-  }
+	background-color: #EFF3F6;
+	font-family: "Source Sans Pro", sans-serif;
+}
   
-  .container-fluid .row aside {
-    background-color: #1D2532;
-    padding-left: 0;
-    padding-right: 0;
-    transition: 0.2s linear;
-    z-index: 100;
-  }
+.container-fluid {
+	.row{
+		aside {
+		background-color: #1D2532;
+		padding-left: 0;
+		padding-right: 0;
+		transition: 0.2s linear;
+		z-index: 100;
+		}
+	}
+} 
   
-  header nav.navbar {
-    background-color: #fff;
-  }
-  
-  header nav.navbar a.navbar-brand {
-    color: #202634;
-    font-size: 24px;
-    font-family: "Source Sans Pro", sans-serif;
-  }
-  
-  header nav.navbar li.nav-item > a.nav-link:hover,
-  header nav.navbar li.nav-item.active a.nav-link {
-    color: #202329;
-  }
-  
-  header nav.navbar li.nav-item > a.nav-link {
-    color: #818EA7;
-  }
-  
-  @media (min-width: 992px) {
+header {
+	nav{
+		&.navbar {
+			background-color: #fff;
+
+			a.navbar-brand {
+				color: #202634;
+				font-size: 24px;
+				font-family: "Source Sans Pro", sans-serif;
+			}
+
+			li.nav-item > a.nav-link:hover,
+			li.nav-item.active a.nav-link {
+				color: #202329;
+			}
+			li.nav-item > a.nav-link {
+				color: #818EA7;
+			}
+		}
+	}
+}
+@media (min-width: 992px) {
     header nav.navbar li.nav-item > a.nav-link {
-      font-size: 18px;
+	    font-size: 18px;
     }
-  }
+}
   
   @media (min-width: 768px) {
     ul.navbar-nav.ml-auto:before {
@@ -80,121 +86,125 @@ body {
     padding-right: 0;
     color: #fff;
   }
-  
-  .deputados-mobile ::placeholder {
-    color: #fff;
-  }
-  
-  .deputados-mobile .navbar-toggler {
-    color: rgba(250, 250, 250, 0.5);
-    border: 1px solid rgba(250, 250, 250, 0.8);
-  }
-  
-  .deputados-mobile .custom-toggler-icon.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(250, 250, 250, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
-  
-  .deputados__item {
+.deputados-mobile{
+	::placeholder {
+		color: #fff;
+	}
+
+	.navbar-toggler {
+		color: rgba(250, 250, 250, 0.5);
+		border: 1px solid rgba(250, 250, 250, 0.8);
+	}
+
+	.custom-toggler-icon.navbar-toggler-icon {
+		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(250, 250, 250, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+	}
+}
+
+.deputados__item {
     padding-left: 15px;
     padding-bottom: 3px;
-    padding-top: 2px;
-  }
+	padding-top: 2px;
+	
+	@media (min-width: 768px) and (max-width: 991px) {		
+		display: none;
+	}
+}
   
-  @media (min-width: 768px) and (max-width: 991px) {
-    .deputados__item {
-      display: none;
-    }
-  }
-  
-  #navbarMobDeputado ul a,
-  #deputados ul a {
+#navbarMobDeputado ul a,
+#deputados ul a {
     width: 100%;
     display: block;
-    padding: 5px 0;
-  }
+	padding: 5px 0;
+	
+	@media (max-width: 767px) {	
+		padding: 10px 0;
+	}
+}
   
-  @media (max-width: 767px) {
-    #navbarMobDeputado ul a,
-    #deputados ul a {
-      padding: 10px 0;
-    }
-  }
-  
-  #navbarMobDeputado.show {
+#navbarMobDeputado.show {
     height: 120px;
     overflow-y: scroll;
-  }
+}
   
-  #deputados ul a:hover,
-  #deputados ul a:hover {
+#deputados ul a:hover,
+#deputados ul a:hover {
     background-color: #313D4F;
-  }
+}
   
-  a .deputados__item,
-  a .deputados__item__mobile {
-    font-weight: 600;
-    color: #fff;
-    font-size: 14px;
-  }
+a{
+	.deputados__item,
+	.deputados__item__mobile {
+		font-weight: 600;
+		color: #fff;
+		font-size: 14px;
+
+		@media (max-width: 767px) {
+			font-size: 16px;
+		}
+	}
+}
   
-  @media (max-width: 767px) {
-    a .deputados__item,
-    a .deputados__item__mobile {
-      font-size: 16px;
-    }
-  }
   
-  #deputados ul a:hover {
-    text-decoration: none;
-  }
   
-  main {
+#deputados{
+	ul{
+		a:hover {
+			text-decoration: none;
+		}
+	}
+}
+  
+main {
     padding-left: 20px;
     padding-right: 20px;
-  }
+}
   
-  aside ul {
-    padding-left: 0;
-    width: 100%;
-    list-style-type: none;
-  }
-  
-  aside .aside-header {
-    width: 100%;
-  }
-  
-  aside .aside-header span.aside-header__title {
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    display: block;
-    margin-left: 15px;
-    color: #5B6779;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  
-  aside .aside-header #busca {
-    margin-bottom: 30px;
-  }
-  
-  #busca .form-inline input#procurar {
-    color: #fff;
-    width: 80%;
-    background-color: transparent;
-    border: unset;
-    border-bottom: solid 1px #5B6779;
-    border-radius: 0;
-    font-size: 14px;
-    font-weight: 600;
-    margin-left: 15px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  
-  #busca .form-inline input#procurar:focus {
-    box-shadow: unset;
-  }
+aside {
+	
+	ul {
+		padding-left: 0;
+		width: 100%;
+		list-style-type: none;
+	}
+
+	.aside-header {
+		width: 100%;
+
+		span.aside-header__title {
+			width: 100%;
+			margin-top: 30px;
+			margin-bottom: 20px;
+			display: block;
+			margin-left: 15px;
+			color: #5B6779;
+			font-size: 12px;
+			font-weight: 600;
+		}
+
+		#busca {
+			margin-bottom: 30px;
+
+			.form-inline input#procurar {
+				color: #fff;
+				width: 80%;
+				background-color: transparent;
+				border: unset;
+				border-bottom: solid 1px #5B6779;
+				border-radius: 0;
+				font-size: 14px;
+				font-weight: 600;
+				margin-left: 15px;
+				padding-left: 0;
+				padding-right: 0;
+
+				&:focus {
+					box-shadow: unset;
+				}
+			}
+		}
+	}
+}
   
   #procurar + .fa-search {
     position: absolute;
@@ -247,215 +257,215 @@ body {
     }
   }
   
-  .deputado-informacoes {
-    background-color: #fff;
-    padding-bottom: 30px;
-  }
+.deputado-informacoes{
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #fff;
+	padding-bottom: 30px;
+
+	@media (min-width: 992px) {
+		min-height: 400px;
+	}
+	
+	h2 {
+		padding-top: 30px;
+		font-size: 24px;
+		font-family: "Source Sans Pro", sans-serif;
+		text-align: center;
+		padding-left: 10px;
+		padding-right: 10px;
+		color: #202634;
+	}
+
+	hr {
+		background-color: #B5B5B5;
+	}
+
+	img.img-fluid {
+		width: 100%;
+	}
+
+	.info-label:nth-child(7) {
+		margin-top: 20px;
+	}
+
+}
   
-  @media (min-width: 992px) {
-    .deputado-informacoes {
-      min-height: 400px;
-    }
-  }
-  
-  .deputado-informacoes h2 {
-    padding-top: 30px;
-    font-size: 24px;
-    font-family: "Source Sans Pro", sans-serif;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #202634;
-  }
-  
-  .deputado-informacoes img.img-fluid {
-    width: 100%;
-  }
-  
-  .deputado-informacoes hr {
-    background-color: #B5B5B5;
-  }
-  
-  .deputado-informacoes {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .info,
-  .info-label {
+.info,
+.info-label {
     display: block;
     line-height: 1.3;
     padding-left: 10px;
     padding-right: 10px;
-  }
+}
   
-  .info-label {
+.info-label {
     font-size: 12px;
     color: #818EA7;
-  }
+}
   
-  .info {
+.info {
     color: #56688A;
     font-size: 14px;
     margin-bottom: 10px;
-  }
+}
   
-  .deputado-informacoes .info-label:nth-child(7) {
-    margin-top: 20px;
-  }
-  
-  .redes-sociais {
+.redes-sociais {
     width: 100%;
     display: block;
-    margin-top: 30px;
-  }
-  
-  .redes-sociais .fa {
-    color: #56688A;
-    margin-right: 10px;
-  }
-  
-  .infos-deputados .redes-sociais a:nth-child(1) {
-    margin-left: 10px;
-  }
-  
-  .header-main__wrap__graficos {
+	margin-top: 30px;
+
+	.infos-deputados &{
+
+		a:nth-child(1) {
+			margin-left: 10px;
+		}
+
+	}
+
+	.fa {
+		color: #56688A;
+		margin-right: 10px;
+	}
+}
+    
+.header-main__wrap__graficos {
     display: block;
-  }
+}
   
-  .header-main__wrap__graficos .header-main__wrap__graficos__header__el h2 {
-    color: #202634;
-    font-size: 20px;
-    font-weight: 400;
+.header-main__wrap__graficos__header__el{
+	h2 {
+		color: #202634;
+		font-size: 20px;
+		font-weight: 400;
+		float: left;
+		margin-left: 15px;
+	}
+} 
+  
+.dropdown-menu__item__title {
     float: left;
-    margin-left: 15px;
-  }
+}
   
-  .header-main__wrap__graficos .header-main__wrap__graficos__header__el .dropdown-menu__item__title {
-    float: left;
-  }
+.header-main__wrap__graficos__header__el {
+	display: block;
+	
+	.fa-caret-down {
+		display: inline;
+		margin-left: 10px;
+		margin-top: 5px;
+	}
+
+	.dropdown-menu.show {
+		padding-right: 20px;
+	}
+
+	.dropdown .btn {
+		background: none;
+		box-shadow: none;
+		border: unset;
+		cursor: pointer;
+	}
+}
   
-  .header-main__wrap__graficos .header-main__wrap__graficos__header__el .fa-caret-down {
-    display: inline;
-    margin-left: 10px;
-    margin-top: 5px;
-  }
-  
-  .header-main__wrap__graficos .header-main__wrap__graficos__header__el {
-    display: block;
-  }
-  
-  .header-main__wrap__graficos__header__el .dropdown-menu.show {
-    padding-right: 20px;
-  }
-  
-  .header-main__wrap__graficos__header__el .dropdown .btn {
-    background: none;
-    box-shadow: none;
-    border: unset;
+.dropdown-menu .dropdown-item {
     cursor: pointer;
-  }
+}
   
-  .dropdown-menu .dropdown-item {
-    cursor: pointer;
-  }
-  
-  .anos {
+.anos {
     display: inline-block;
-    float: right;
-  }
+	float: right;
+	
+	@media (max-width: 767px) {
+		width: 40px;
+		height: 35px;
+		margin-right: 5px;
+	}
+
+	.badge-pill {
+		color: #818EA7;
+		cursor: pointer;
+	}
+
+	.badge-pill.active {
+		background-color: #4695D9;
+		color: #fff;
+	}
+}
   
-  @media (max-width: 767px) {
-    .anos {
-      width: 40px;
-      height: 35px;
-      margin-right: 5px;
-    }
-  }
-  
-  .anos-line {
+.anos-line {
     display: none;
     width: 70%;
     margin-bottom: 5px;
     height: 2px;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+	background-color: rgba(0, 0, 0, 0.5);
+	
+	@media (max-width: 767px) {		
+		display: block;
+	}
+}
   
-  @media (max-width: 767px) {
-    .anos-line {
-      display: block;
-    }
-  }
-  
-  .anos .badge-pill {
-    color: #818EA7;
-    cursor: pointer;
-  }
-  
-  .anos .badge-pill.active {
-    background-color: #4695D9;
-    color: #fff;
-  }
-  
-  .header-main__wrap__graficos__header {
+ 
+.header-main__wrap__graficos__header {
     display: block;
     width: 100%;
     padding-top: 10px;
-  }
+}
   
-  .cards-gastos {
-    margin-top: 30px;
-  }
-  
-  .cards-gastos .gastos-titulo {
-    margin-bottom: 30px;
-  }
-  
-  .cards-gastos .gastos-titulo h2 {
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 24px;
-    float: left;
-    margin-left: 15px;
-    display: inline-block;
-  }
-  
-  .gastos-titulo .badge {
-    background-color: #4695D9;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-  }
-  
-  .gastos-titulo .badge .fa {
-    color: #fff;
-    font-size: 15px;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  
-  .gastos-titulo .badge:nth-of-type(1) {
-    margin-right: 5px;
-  }
-  
-  .gastos-titulo .badge .fa.fa-caret-left {
-    margin-left: -2px;
-  }
-  
-  .gastos-titulo .badge .fa.fa-caret-right {
-    margin-right: -2px;
-  }
-  
-  .gastos-titulo .navigation-months {
-    margin-left: 20px;
-    margin-top: 3px;
-    display: inline-block;
-  }
-  
-  .body-card-gastos .row {
+.cards-gastos {
+	margin-top: 30px;
+
+	.gastos-titulo {
+		margin-bottom: 30px;
+
+		h2 {
+			font-family: "Source Sans Pro", sans-serif;
+			font-size: 24px;
+			float: left;
+			margin-left: 15px;
+			display: inline-block;
+		}
+
+		.badge {
+			background-color: #4695D9;
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+
+			.fa {
+				color: #fff;
+				font-size: 15px;
+				text-align: center;
+				margin-bottom: 5px;
+
+				&.fa-caret-left {
+					margin-left: -2px;
+				}
+
+				&.fa-caret-right {
+					margin-right: -2px;
+				}
+			}
+		}
+
+		.badge:nth-of-type(1) {
+			margin-right: 5px;
+		}
+
+		.navigation-months {
+			margin-left: 20px;
+			margin-top: 3px;
+			display: inline-block;
+		}
+	}
+}
+    
+    
+.body-card-gastos .row {
     float: left;
     width: 100%;
-  }
+}
   
   @media (max-width: 992px) {
     .body-card-gastos .row {
